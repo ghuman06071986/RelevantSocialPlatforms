@@ -36,7 +36,7 @@ public class RelevantSocialPlatforms {
 	 */
 	public static void main(String... args) {
 
-		// args[0] = "https://www.instagram.com/parminder";
+		//args[0] = "https://www.instagram.com/parminder12";
 
 		if (args.length == 0) {
 			System.out.println("Please Enter a url to proceed.");
@@ -76,29 +76,30 @@ public class RelevantSocialPlatforms {
 		ScorePredictor scorePredictor = new ScorePredictor();
 		System.out.println("Output: ");
 		for (Entry<String, Parser> parser : validUrlsSet.entrySet()) {
-			try {
-				FindSimilarUsername findSimilarUsername = new FindSimilarUsername();
-				List<String> possibleNameArray = findSimilarUsername.findPossibleUsername(username);
-				int score = 0;
-				UserInfo copyInfo =null;
-				for (String possibleName : possibleNameArray) {
+
+			FindSimilarUsername findSimilarUsername = new FindSimilarUsername();
+			List<String> possibleNameArray = findSimilarUsername.findPossibleUsername(username);
+			int score = 0;
+			UserInfo copyInfo = null;
+			for (String possibleName : possibleNameArray) {
+				try {
 					UserInfo newCopyInfo = parser.getValue().parsePage(username);
 					int newScore = scorePredictor.getCompareScrore(originaInfo, newCopyInfo);
 					if (newScore > score) {
-						score= newScore;
+						score = newScore;
 						copyInfo = newCopyInfo;
 					}
-				}
-				if(copyInfo != null) {
-					System.out.println("Best user   for "+parser.getKey() +" is : "+copyInfo.getUserName()+" ,score : "+score);
-				}else {
-					System.out.println("No user  Found for "+parser.getKey() );
+				} catch (IOException e) {
+					//System.out.println("Input url is not valid");
+
 				}
 
-			} catch (IOException e) {
-				System.out.println("Input url is not valid");
-
-				System.exit(1);
+			}
+			if (copyInfo != null) {
+				System.out.println("Best user   for " + parser.getKey() + " is : " + copyInfo.getUserName()
+						+ " ,score : " + score);
+			} else {
+				System.out.println("No user  Found for " + parser.getKey());
 			}
 
 		}
