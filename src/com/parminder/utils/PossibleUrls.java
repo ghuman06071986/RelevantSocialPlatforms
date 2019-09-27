@@ -1,7 +1,15 @@
 package com.parminder.utils;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+
+import com.parminder.parser.FacebookParser;
+import com.parminder.parser.InstagramParser;
+import com.parminder.parser.Parser;
+import com.parminder.parser.PinterestParser;
+import com.parminder.parser.TwitterParser;
 
 /**
  * 
@@ -12,26 +20,26 @@ public class PossibleUrls {
 	/**
 	 * possible urls set
 	 */
-	private static Set<String> validUrlsSet = new HashSet<>();
+	private static Map<String,Parser> validUrlsSet = new HashMap<>();
 
 	/**
 	 * add possible urls onstart
 	 */
 	static {
-		validUrlsSet.add("facebook.com");
+		validUrlsSet.put("facebook.com",new FacebookParser());
 
-		validUrlsSet.add("www.instagram.com");
+		validUrlsSet.put("www.instagram.com",new InstagramParser());
 
-		validUrlsSet.add("twitter.com");
+		validUrlsSet.put("twitter.com",new TwitterParser());
 
-		validUrlsSet.add("in.pinterest.com");
+		validUrlsSet.put("in.pinterest.com", new PinterestParser());
 	}
 	
 	/**
 	 * 
 	 * @return urls set
 	 */
-	public static Set<String> getValidUrlsSet() {
+	public static Map<String,Parser> getValidUrlsMap() {
 		return validUrlsSet;
 	}
 	
