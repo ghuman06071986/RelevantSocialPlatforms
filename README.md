@@ -16,5 +16,5 @@ java -Dfile.encoding=UTF-8 -classpath bin:lib/jsoup-1.12.1.jar:lib/org.json-2013
 
 for example :  
 
-java -Dfile.encoding=UTF-8 -classpath bin:lib/jsoup-1.12.1.jar:lib/org.json-20130603.jar com.parminder.main.RelevantSocialPlatforms https://www.instagram.com/fashiongrunge/
+java -Dfile.encoding=UTF-8 -classpath bin:lib/jsoup-1.12.1.jar:lib/org.json-20130603.jar com.parminder.main.RelevantSocialPlatforms https://www.instagram.com/fashiongrunge
 
